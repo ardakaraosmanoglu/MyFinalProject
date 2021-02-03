@@ -1,8 +1,9 @@
-﻿using System;
+﻿using DataAccess.Abstract;
+using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using DataAccess.Abstrack;
-using Entities;
+using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {

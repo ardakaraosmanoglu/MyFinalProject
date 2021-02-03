@@ -1,18 +1,21 @@
-﻿using System;
+﻿using DataAccess.Abstract;
+using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Entities;
-using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
+    //NuGet
     public class EfProductDal : IProductDal
     {
         public void Add(Product entity)
         {
             //IDisposable pattern implementation of c#
-            using (NorthWindContext context= new NorthWindContext())
+            using (NorthwindContext context=new NorthwindContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
@@ -22,7 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public void Delete(Product entity)
         {
-            using (NorthWindContext context = new NorthWindContext())
+            using (NorthwindContext context = new NorthwindContext())
             {
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
@@ -32,7 +35,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Product Get(Expression<Func<Product, bool>> filter)
         {
-            using (NorthWindContext context= new NorthWindContext())
+            using (NorthwindContext context = new NorthwindContext())
             {
                 return context.Set<Product>().SingleOrDefault(filter);
             }
@@ -40,15 +43,17 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
-            using (NorthWindContext context = new NorthWindContext())
+            using (NorthwindContext context=new NorthwindContext())
             {
-                return filter == null ? context.Set<Product>().ToList() : context.Set<Product>().Where(filter).ToList();
+                return filter == null 
+                    ? context.Set<Product>().ToList() 
+                    : context.Set<Product>().Where(filter).ToList();
             }
         }
 
         public void Update(Product entity)
         {
-            using (NorthWindContext context = new NorthWindContext())
+            using (NorthwindContext context = new NorthwindContext())
             {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;

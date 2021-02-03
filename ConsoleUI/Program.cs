@@ -1,23 +1,24 @@
-﻿using System;
-using Business.Concrete;
+﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using System;
 
 namespace ConsoleUI
 {
-    class MainClass
+    //SOLID
+    //Open Closed Principle
+    class Program
     {
-        //SOLID
-        // Open Closed Principle
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetAllByCategoryId(2))
+            foreach (var product in productManager.GetByUnitPrice(40,100))
             {
                 Console.WriteLine(product.ProductName);
             }
 
+            
         }
     }
 }

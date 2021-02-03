@@ -1,9 +1,11 @@
-﻿using System;
-using Entities.Abstrack;
+﻿using Entities.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Customer: IEntity
+    public class Customer:IEntity
     {
         public string CustomerId { get; set; }
         public string ContactName { get; set; }
