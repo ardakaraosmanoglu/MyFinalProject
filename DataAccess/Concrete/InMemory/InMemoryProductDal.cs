@@ -35,7 +35,7 @@ namespace DataAccess.Concrete.InMemory
 
         public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return _products;
         }
 
         public List<Product> GetAllByCategory(int categoryId)
